@@ -1,5 +1,5 @@
 import { Flex, TextField,Avatar, Link,IconButton } from "@radix-ui/themes";
-import { MagnifyingGlassIcon,BellIcon,PersonIcon,HomeIcon} from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon,BellIcon,PersonIcon,HomeIcon,DashboardIcon} from "@radix-ui/react-icons";
 
 
 function MyApp() {
@@ -19,9 +19,10 @@ function MyApp() {
 			</TextField.Root>
 		</Flex>
 		<Flex justify="end" gap="7" px="20px" align="center">
-		<Link weight="medium">Sell</Link>
-		<IconButton variant="outline" size="3">
-		
+		<IconButton variant="outline" size="3">		
+		<DashboardIcon height="16" width="16"></DashboardIcon>
+		</IconButton>
+		<IconButton variant="outline" size="3">		
 		<HomeIcon height="16" width="16"></HomeIcon>
 		</IconButton>
 		
