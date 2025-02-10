@@ -48,7 +48,7 @@ function MyApp() {
 			<IconButton variant="outline" size="3">
 			<PersonIcon height="16" width="16" />
 			</IconButton>
-			<Text size="1">Hi, {user.given_name}</Text>
+			<Text size="1">Hi, {user.nickname}</Text>
 
 			</Flex>
 			<Button size="3" variant="soft" onClick={logout}>Log out</Button>
@@ -56,8 +56,6 @@ function MyApp() {
 		) : (
 		<Button size="3" variant="soft" onClick={loginWithRedirect}>Log in</Button>
 		)}
-
-
 		
 		
 		
