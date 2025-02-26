@@ -1,3 +1,6 @@
 Flask
-Flask-PyMongo
-python-dotenv 
+pymongo
+python-dotenv
+os
+gridfs
+io
