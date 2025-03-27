@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Box, Text, Inset, Strong, Card, Flex, Button, Skeleton } from "@radix-ui/themes";
+import { Callout, Box, Text, Inset, Strong, Card, Flex, Button, Skeleton } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
-
+import { InfoCircledIcon, PlusIcon } from "@radix-ui/react-icons";
 // Custom AsyncImage component to handle image fetching
 function AsyncImage({ src, alt }) {
     const [imageUrl, setImageUrl] = useState(null);
@@ -33,11 +33,25 @@ function AsyncImage({ src, alt }) {
 
 
 
-function Products({cart,setCart, setcurrentProduct}) {
+function Products({cart,setCart, setcurrentProduct, selectedFilters}) {
+    console.log(selectedFilters)
+    const [initialProductData, setInitialProductData] = useState([]);
     const [productData, setProductData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (selectedFilters.length > 1) {
+          setProductData(
+            initialProductData.filter((product) => selectedFilters.includes(product.category))
+          );
+        }
+        else{
+            setProductData(initialProductData)
+        }
+
+      }, [selectedFilters]);
 
     useEffect(() => {
         async function fetchProducts() {
@@ -47,7 +61,8 @@ function Products({cart,setCart, setcurrentProduct}) {
                     throw new Error("Network response was not ok");
                 }
                 let data = await response.json();
-                setProductData(data); 
+                setInitialProductData(data); 
+                setProductData(data)
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -84,9 +99,24 @@ function Products({cart,setCart, setcurrentProduct}) {
         navigate("/more")
     }
 
+    if (productData.length>0){
     return (
         <div>
-            <Flex wrap="wrap" align="start" flexGrow="1" justify="center" px="7px" py="35px" gapX="7" gapY="4">
+            <Flex wrap="wrap" align="center" flexGrow="1" justify="between" px="10%" py="35px" gapX="7" gapY="4">
+            <Box  minWidth="240px" maxWidth="240px">
+                        <Card size="2">
+                            <Text align="center" as="p" size="3" >
+                                <strong>Add a product</strong>
+                            </Text>
+                            <Box pt="2">
+                            <Card>
+                            <Flex gapY="3" justify="center" direction="column">
+                                <Button onClick={()=>{navigate("/sellerform")}} size="4" variant="soft" > <PlusIcon></PlusIcon></Button>
+                           </Flex>
+                            </Card>
+                            </Box>
+                        </Card>
+                    </Box>
                 {productData.map((product) => (
                     <Box key={product.product_id} minWidth="240px" maxWidth="240px">
                         <Card size="2">
@@ -112,5 +142,39 @@ function Products({cart,setCart, setcurrentProduct}) {
         </div>
     );
 }
+else{
+    return(
+        <>
+        <Box width="100%">
+        <Flex direction="column" justify="center" align="center" gapY="6" py="8">
+                        <Callout.Root>
+                            <Callout.Icon>
+                                <InfoCircledIcon />
+                            </Callout.Icon>
+                            <Callout.Text>No products to display</Callout.Text>
+                        </Callout.Root>
+            
+       
+        <Box  minWidth="240px" maxWidth="240px">
+                    <Card size="2">
+                        <Text align="center" as="p" size="3" >
+                            <strong>Add a product</strong>
+                        </Text>
+                        <Box pt="2">
+                        <Card>
+                        <Flex gapY="3" justify="center" direction="column">
+                            <Button onClick={()=>{navigate("/sellerform")}} size="4" variant="soft" > <PlusIcon></PlusIcon></Button>
+                       </Flex>
+                        </Card>
+                        </Box>
+                    </Card>
+                </Box>
+        </Flex>
+        </Box>
+        </>
+    )
+}
+}
+
 
 export default Products;

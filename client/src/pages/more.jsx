@@ -1,4 +1,4 @@
-import { Callout, DataList, Code, Flex, Badge, IconButton, Link, Card, Box, Skeleton } from "@radix-ui/themes";
+import { DataList, Code, Flex, Badge, IconButton, Link, Card, Box, Skeleton } from "@radix-ui/themes";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { useState, useEffect } from "react";
 
@@ -31,7 +31,7 @@ function More({ currentProduct }) {
             return <div><Skeleton>Loading</Skeleton></div>; // Show loading message if the image is still being fetched
         }
 
-        return <img src={imageUrl} alt={alt} style={{ objectFit: "contain" }} />;
+        return <img src={imageUrl} alt={alt} style={{ objectFit: "contain", maxWidth:"20%", maxHeight:"100%" }} />;
     }
     return (
         <>
