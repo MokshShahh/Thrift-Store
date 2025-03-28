@@ -21,7 +21,7 @@ function App() {
                     <NavBar />
                     <Routes>
                         <Route path="/" element={<Home cart={cart} setCart={setCart} setcurrentProduct={setcurrentProduct}/>} />
-                        <Route path="/cart" element={<Cart cart={cart}/>} />
+                        <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
                         <Route path="/more" element={<More currentProduct={currentProduct}/>} />
                         <Route path="/sellerform" element={<SellerForm/>}/>
                         <Route path="/chat" element={<Chat/>} />
