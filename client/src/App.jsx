@@ -5,7 +5,9 @@ import Home from "./pages/home.jsx";
 import Cart from "./pages/cart.jsx"
 import More from "./pages/more.jsx"
 import SellerForm from "./pages/sellerform.jsx"
+import Chat from "./pages/chat.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { useState } from "react";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
                         <Route path="/cart" element={<Cart cart={cart}/>} />
                         <Route path="/more" element={<More currentProduct={currentProduct}/>} />
                         <Route path="/sellerform" element={<SellerForm/>}/>
+                        <Route path="/chat" element={<Chat/>} />
                     </Routes>
                 </Flex>
             </Theme>

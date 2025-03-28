@@ -1,5 +1,5 @@
 import { Flex, TextField,Avatar, Button,IconButton, Text } from "@radix-ui/themes";
-import { MagnifyingGlassIcon,BellIcon,PersonIcon,HomeIcon,DashboardIcon} from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon,BellIcon,PersonIcon,HomeIcon,DashboardIcon, ChatBubbleIcon} from "@radix-ui/react-icons";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 
@@ -31,7 +31,16 @@ function NavBar() {
 		<IconButton variant="outline" size="3">		
 		<HomeIcon height="16" width="16"></HomeIcon>
 		</IconButton>
+		
 		</Link>
+
+		<Link to="/chat">
+		<IconButton variant="outline" size="3">		
+		<ChatBubbleIcon height="16" width="16"></ChatBubbleIcon>
+		</IconButton>
+		
+		</Link>
+
 		<IconButton variant="outline" size="3">		
 		<DashboardIcon height="16" width="16"></DashboardIcon>
 		</IconButton>
